@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Vidly.Models
 {
-    public class Movie
+    public class IdentityModels: DbContext
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Movie> Movies { get; set; }
     }
 }

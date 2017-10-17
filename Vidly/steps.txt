@@ -1,0 +1,11 @@
+﻿Install-Package EntityFramework -IncludePrerelease
+create a cs class with the name IdentityModels
+    add:
+    public class IdentityModels: DbContext
+    {
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+    }
+enable-migrations
+add-migration InitialModel
+update-database
