@@ -9,3 +9,115 @@ create a cs class with the name IdentityModels
 enable-migrations
 add-migration InitialModel
 update-database
+
+Subsecuent steps:
+
+add-migration InitialModel -force
+
+In Customer.cs
+public bool IsSubscribedToNewsletter { get; set; }
+add-migration add-IsSubscribedToCustomer
+update-database
+
+in Model add MembershipType.cs
+in Customer.cs add
+public MembershipType MembershipType { get; set; }
+public byte MembershipTypeId { get; set; }
+
+add-migration AddMembershipType
+update-database
+
+add-migration PopulateMembershipTypes
+in the Migration folder open the file called xxx_PopulateMembershipType.cs
+add:
+    public override void Up()
+        {
+            Sql("INSERT INTO MembershipTypes (Id, SignUpFee, DurationInMonths, DiscountRate) VALUES (1, 0, 0, 0)");
+            Sql("INSERT INTO MembershipTypes (Id, SignUpFee, DurationInMonths, DiscountRate) VALUES (2, 30, 1, 10)");
+            Sql("INSERT INTO MembershipTypes (Id, SignUpFee, DurationInMonths, DiscountRate) VALUES (3, 90, 3, 15)");
+            Sql("INSERT INTO MembershipTypes (Id, SignUpFee, DurationInMonths, DiscountRate) VALUES (4, 300, 12, 20)");
+        }
+
+update-database
+
+/**************************************************************/
+
+Overriding conventions
+
+in the Customer.cs
+[Required]
+[StringLength(255)]
+public string Name { get; set; }
+
+add-migration ApplyAnnotationsToCustomerName
+update-database
+
+/********************************************/
+
+Query the database
+
+Tweak the code in CustomerController.cs
+
+populate the database in customer table. Manually
+
+Tweak the Views/Customer/index.cshtml
+
+Note: Eager loading => Include method to show the discount rate.
+
+
+
+
+/*******************************/
+
+To do:  exercise 2 and 3 of working with data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
