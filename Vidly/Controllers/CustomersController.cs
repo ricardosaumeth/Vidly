@@ -20,6 +20,11 @@ namespace Vidly.Controllers
             _context.Dispose();  
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
         public ViewResult Index()
         {
             //var customers = GetCustomers();
@@ -32,7 +37,7 @@ namespace Vidly.Controllers
         public ActionResult Details(int id)
         {
             //var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
-            var customer = _context.Customer.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customer.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
